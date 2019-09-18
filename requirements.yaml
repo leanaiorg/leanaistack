@@ -1,0 +1,16 @@
+dependencies:
+  - name: jupyterhub
+    version: 0.8.2
+    repository: "https://jupyterhub.github.io/helm-chart/"
+
+  - name: rabbitmq
+    version: 6.4.4
+    repository: "https://kubernetes-charts.storage.googleapis.com"
+
+  - name: minio
+    version: 2.5.13
+    repository: "https://kubernetes-charts.storage.googleapis.com"
+
+  - name: openfaas
+    version: 4.6.3
+    repository: "https://openfaas.github.io/faas-netes/"

@@ -1,0 +1,1 @@
+helm install --name rabbit-mq stable/rabbitmq -f values.yaml

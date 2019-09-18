@@ -1,0 +1,15 @@
+# OWNERS FILE DEPICT THE GOVERNING BODY OF LEAN AI PROJECT.
+# CONTRIBUTIONS ARE VERY WELCOME. PLEASE SEE CONTRIBUTING
+#
+filters:
+  ".*":
+  approvers:
+    - morganekmefjord
+    - mathewclegg
+    - maxandersson
+    - dstoyanova
+  reviewers:
+    - morganekmefjord
+    - mathewclegg
+    - maxandersson
+    - dstoyanova

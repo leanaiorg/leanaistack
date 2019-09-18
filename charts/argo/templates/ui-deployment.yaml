@@ -1,0 +1,41 @@
+{{- if .Values.ui.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.ui.name}}
+  labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-{{ .Values.ui.name}}
+        release: {{ .Release.Name }}
+      {{- if .Values.ui.podAnnotations }}
+      annotations:
+{{ toYaml .Values.ui.podAnnotations | indent 8}}{{- end }}
+    spec:
+      serviceAccountName: {{ .Values.ui.serviceAccount | quote }}
+      containers:
+        - name: ui
+          image: "{{ .Values.images.namespace }}/{{ .Values.images.ui }}:{{ default .Values.images.tag .Values.ui.image.tag }}"
+          imagePullPolicy: {{ .Values.images.pullPolicy }}
+          env:
+          {{- if .Values.ui.forceNamespaceIsolation }}
+          - name: FORCE_NAMESPACE_ISOLATION
+            value: "true"
+          {{- end }}
+          - name: IN_CLUSTER
+            value: "true"
+          - name: ARGO_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: BASE_HREF
+            value: /
+          resources:
+            {{- toYaml .Values.ui.resources | nindent 12 }}
+{{- end -}}

@@ -1,0 +1,14 @@
+applications:
+  openstack-integrator:
+    charm: cs:~containers/openstack-integrator
+    num_units: 1
+    options:
+      password: "<password>"
+      project-domain-name: "<tenant-name/project-name>"
+      user-domain-name: "<domain-name>"
+      username: "<user-name>"
+      auth-url: "<auth_url>"
+      floating-network-id: "<floating-network-ip>"
+      project-name: "<project-id/tenant-id/tenant-name>"
+      region: "<region>"
+      subnet-id: "<subnet-id>"

@@ -1,0 +1,17 @@
+# All argo-events services are bound to the "argo-events" service account. 
+# In RBAC enabled setups, this SA is bound to specific roles.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: argo-events-sa
+  namespace: {{ .Release.Namespace }}
+{{- if .Values.additionalSaNamespaces }}
+{{- range $namespace := .Values.additionalSaNamespaces }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: argo-events-sa
+  namespace: {{ $namespace }}
+{{- end }}
+{{- end }}

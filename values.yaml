@@ -1,0 +1,130 @@
+# Default values for leanaistack.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  hosts:
+    - host: example.cluster.url
+      paths: []
+
+minio:
+    ingress:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: "5500m"
+        path: /
+        hosts:
+            - minio.example.cluster.url
+        tls:
+            - secretName: ingress-secret
+              hosts:
+                  - minio.example.cluster.url
+    accessKey: "youraccesskeyhere"
+    secretKey: "yoursecrethere"
+    persistence:
+      enabled: true
+      accessMode: ReadWriteOnce
+      size: 10Gi
+
+registry:
+    ingress:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: "5500m"
+        hosts:
+            - registry.example.cluster.url
+        tls:
+            - secretName: ingress-secret
+              hosts:
+                  - registry.example.cluster.url
+
+    persistence:
+      enabled: true
+      accessMode: ReadWriteOnce
+      size: 10Gi
+argo:
+  ui:
+    ingress:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: 1000m
+        hosts:
+            - workflow.example.cluster.url
+        tls:
+            - secretName: ingress-secret
+              hosts:
+                  - workflow.example.cluster.url
+
+argo-events:
+  namespace: argo-events
+  singleNamespace: false
+
+rabbitmq:
+  rabbitmq:
+    username: yourusername
+    password: yourpassword
+  ingress:
+    enabled: true
+    path: /
+    hostName: mq.example.cluster.url
+    tls: true
+    tlsSecret: ingress-secret
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: 1000m
+
+jupyterhub:
+    proxy:
+      # Generate a unique token!
+      secretToken: "956403d9cb95e6243d99d9026304dce0d7db0b7531aa732194bf8cffec94a43b"
+      service:
+          type: ClusterIP
+    ingress:
+      enabled: true
+      hosts:
+        - lab.example.cluster.url
+      tls:
+          - secretName: ingress-secret
+            hosts:
+              - lab.example.cluster.url
+    singleuser:
+      defaultUrl: "/lab"
+      memory:
+          limit: 4G
+          guarantee: 512M
+      storage:
+          dynamic:
+            storageClass: ceph-xfs
+            capacity: 2Gi
+
+    rbac:
+      enabled: true
+    #debug:
+    #  enabled: true
+
+    hub:
+     extraConfig:
+         jupyterlab: |
+                 c.Spawner.cmd = ['jupyter-labhub']
+
+openfaas:
+    functionNamespace: serve-fn
+    exposeServices: true
+    async: true
+    rbac: true
+    psp: false
+    securityContext: true
+    basic_auth: false
+    operator:
+        create: true
+    ingress:
+      enabled: true
+      hosts:
+        - host: faas.example.cluster.url
+          serviceName: gateway
+          servicePort: 8080
+          path: /
+      #annotations: {}
+      tls:
+        - secretName: ingress-secret
+          hosts:
+            - faas.example.cluster.url

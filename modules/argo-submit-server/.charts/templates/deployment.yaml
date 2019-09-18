@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.argo.name }}
+  labels:
+    app: {{ .Values.argo.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.argo.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.argo.name }}
+    spec:
+      containers:
+      - name: {{ .Values.argo.name }}
+        image: {{ .Values.argo.image }}
+        envFrom:
+          - configMapRef:
+              name: {{ .Values.configMap.configMapName }}
+        env:
+          - name: SCALER_MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: scaler-db-secret
+                key: mysqlUser
+          - name: SCALER_MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: scaler-db-secret
+                key: mysqlPassword
+          - name: WORKQUEUE_USER
+            valueFrom:
+              secretKeyRef:
+                name: workqueue-secret
+                key: <rabbit-mq-username>
+          - name: WORKQUEUE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: workqueue-secret
+                key: <rabbit-mq-password>
+          - name: MINIO_USER
+            valueFrom:
+              secretKeyRef:
+                name: <s3-credentials-1>
+                key: accesskey
+          - name: MINIO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: <s3-credentials-1>
+                key: secretkey
+        ports:
+        - containerPort:  {{ .Values.argo.containerPort }}
+      restartPolicy: Always
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets }}

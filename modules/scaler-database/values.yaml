@@ -1,0 +1,9 @@
+mysql<root-mysql-password>word: "<root-mysql-password>" 
+mysqlUser: "user" 
+mysqlPassword: "<root-mysql-password>" 
+
+## Security context
+securityContext:
+  enabled: true
+  runAsUser: 999
+  fsGroup: 999

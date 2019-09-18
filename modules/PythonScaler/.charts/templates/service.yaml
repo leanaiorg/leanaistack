@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: scalerservice
+spec:
+  ports:
+  - name: pythonscaler
+    port: {{ .Values.argo.containerPort }}
+    targetPort: {{ .Values.argo.containerPort }}
+  selector:
+    app: {{ .Values.argo.name }}
+status:
+  loadBalancer: {}

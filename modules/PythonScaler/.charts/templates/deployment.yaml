@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.argo.name }}
+  labels:
+    app: {{ .Values.argo.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.argo.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.argo.name }}
+    spec:
+      containers:
+      - name: {{ .Values.argo.name }}
+        image: {{ .Values.argo.image }}
+        env:
+          - name: JUJU_CONTROLLER_ENDPOINT
+            valueFrom:
+              secretKeyRef:
+                name: python-scaler-secret
+                key: controller_endpoint
+          - name: JUJU_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: python-scaler-secret
+                key: username
+          - name: JUJU_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: python-scaler-secret
+                key: password
+          - name: JUJU_CACERT
+            valueFrom:
+              secretKeyRef:
+                name: python-scaler-secret
+                key: cacert
+          - name: SCALER_MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: scaler-db-secret
+                key: mysqlUser
+          - name: SCALER_MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: scaler-db-secret
+                key: mysqlPassword
+        ports:
+        - containerPort:  {{ .Values.argo.containerPort }}
+      restartPolicy: Always
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets }}
+ 

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMap.configMapName }}
+data:
+    WORKFLOW_NAMESPACE: {{ .Values.configMap.data.workflowNamespace }}
+    SCALER_URL: {{ .Values.configMap.data.scalerUrl }}
+    RABBIT_URI: {{ .Values.configMap.data.rabbitMQ }}
+    DB_HOST_NAME: {{ .Values.configMap.data.ScalerDB_URL }}
+    SCALER_DATABASE: {{ .Values.configMap.data.ScalerDB }}

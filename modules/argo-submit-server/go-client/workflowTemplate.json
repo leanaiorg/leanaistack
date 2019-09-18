@@ -1,0 +1,89 @@
+{
+  "apiVersion": "argoproj.io/v1alpha1",
+  "kind": "Workflow",
+  "metadata": {
+    "generateName": "test-training-",
+    "namespace": "default"
+  },
+  "spec": {
+    "arguments": {
+      "parameters": [
+        {
+          "name": "endpoint",
+          "value": "default-value"
+        }
+      ]
+    },
+    "serviceAccountName": "argo-events-sa",
+    "entrypoint": "workflow-template",
+    "imagePullSecrets": [
+      {
+        "name": "regcred3"
+      }
+    ],
+    "templates": [
+      {
+        "name": "workflow-template",
+        "container": {
+          "image": "{{workflow.parameters.image}}",
+          "imagePullPolicy": "Always",
+          "env": [
+            {
+              "name": "MODEL_ID",
+              "value": "123"
+            }
+          ]
+        },
+        "inputs": {
+          "artifacts": [
+            {
+              "name": "input",
+              "path": "{{workflow.parameters.input-file-path}}",
+              "archive":{
+                "none": {}
+              },
+              "s3": {
+                "endpoint": "{{workflow.parameters.endpoint}}",
+                "bucket": "{{workflow.parameters.in-bucket}}",
+                "key": "{{workflow.parameters.in-key}}",
+                "accessKeySecret": {
+                  "key": "accesskey",
+                  "name": "<s3-credentials-1>"
+                },
+                "secretKeySecret": {
+                  "key": "secretkey",
+                  "name": "<s3-credentials-1>"
+                }
+              }
+            }
+          ]
+        },
+        "outputs": {
+          "artifacts": [
+            {
+              "name": "output",
+              "path": "{{workflow.parameters.result-file-local-path}}",
+              "archive":{
+                "none": {}
+              },
+              "archiveLogs": true,
+              "s3": {
+                "endpoint": "{{workflow.parameters.endpoint}}",
+                "bucket": "{{workflow.parameters.out-bucket}}",
+                "key": "NAME",
+                "accessKeySecret": {
+                  "key": "accesskey",
+                  "name": "<s3-credentials-1>"
+                },
+                "secretKeySecret": {
+                  "key": "secretkey",
+                  "name": "<s3-credentials-1>"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

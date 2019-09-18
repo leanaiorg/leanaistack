@@ -1,0 +1,33 @@
+argo:
+  name: argo-submitter
+  image: <private-registry-hostname>/argo-go-cli:latest
+  containerPort: 3000
+
+service:
+  name: argo-submitter
+
+imagePullSecrets: regcred3
+
+ingress:
+  enabled: true
+  path: /
+  # Used to create an Ingress record.
+  host: <argo-subit-hostname>
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/add-base-url: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/secure-backends: “true”
+    nginx.ingress.kubernetes.io/proxy-body-size: "5500m"
+  labels: {}
+  tls:
+    secretName: tls-secret
+
+configMap:
+  configMapName: envs
+  data:
+    workflowNamespace: default
+    scalerUrl: "http://scalerservice.submit-scaler.svc.cluster.local:8080"
+    rabbitMQ: "rabbit-mq-rabbitmq.submit-scaler.svc.cluster.local"
+    ScalerDB_URL: "scaler-db-mysql.submit-scaler.svc.cluster.local"
+    ScalerDB: "scalerdb"

@@ -1,0 +1,92 @@
+{
+    "steps": [
+        {
+            "step": 1,
+            "workflowImage": "<private-registry-hostname>/lstest:asd",
+            "inputBucket": {
+                "enabled": true,
+                "bucketPath": "<in-container-storage-path>",
+                "endpoint": "<private-s3-storage-hostname>",
+                "bucketName": "<example-bucketname-1>",
+                "key": "<file/files-in-bucket>/",
+                "accessKey": "accesskey",
+                "credentialSecretName": "<s3-credentials-1>",
+                "secretKey": "secretkey"
+            },
+            "outputBucket": {
+                "enabled": true,
+                "bucketPath": "<in-container-storage-path>",
+                "endpoint": "<private-s3-storage-hostname>",
+                "bucketName": "<output-bucket-name>",
+                "key": "<output-storage-path/name>",
+                "accessKey": "accesskey",
+                "credentialSecretName": "<s3-credentials-1>",
+                "secretKey": "secretkey"
+            },
+            "workQueue" : {
+                "enabled": true,
+                "s3Uri": "<private-s3-storage-hostname>",
+                "s3bucket": "<example-bucketname-1>",
+                "prefix": "<file/files-in-bucket>",
+                "queueName": ""
+            },
+            "envs": [
+                {
+                    "name": "test",
+                    "value": "test_value"
+                },
+                {
+                    "name": "test2",
+                    "value": "test_value2"
+                }
+            ]
+        },
+        {
+            "step": 2,
+            "workflowImage": "<private-registry-hostname>/lstest:asd",
+            "inputBucket": {
+                "enabled": true,
+                "bucketPath": "<in-container-storage-path>",
+                "endpoint": "<private-s3-storage-hostname>",
+                "bucketName": "<output-bucket-name>",
+                "key": "<output-storage-path/name>",
+                "accessKey": "accesskey",
+                "credentialSecretName": "<s3-credentials-1>",
+                "secretKey": "secretkey"
+            },
+            "outputBucket": {
+                "enabled": true,
+                "bucketPath": "<in-container-storage-path>",
+                "endpoint": "<private-s3-storage-hostname>",
+                "bucketName": "<output-bucket-name>",
+                "key": "<output-bucket-name>-artifact/test2/",
+                "accessKey": "accesskey",
+                "credentialSecretName": "<s3-credentials-1>",
+                "secretKey": "secretkey"
+            },
+            "workQueue" : {
+                "enabled": false,
+                "s3Uri": "<private-s3-storage-hostname>",
+                "s3bucket": "<example-bucketname-1>",
+                "prefix": "<output-storage-path/name>",
+                "queueName": "SPECIFIC_QUEUE"
+            },
+            "envs": [
+                {
+                    "name": "test",
+                    "value": "test_value"
+                },
+                {
+                    "name": "test2",
+                    "value": "test_value2"
+                }
+            ]
+        }
+    ],
+    "resources" : {
+        "request": false,
+        "cpu": 3,
+        "memory": "2Gi"
+    },
+    "numOfWorkers": 2
+}
