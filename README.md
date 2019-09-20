@@ -14,6 +14,14 @@ Read more about the license [here](LICENSE)
 ## How to contribute
 Read more on how to contribute [here](CONTRIBUTING.md)
 
+## Built in collaboration with
+[![NeiC](https://user-images.githubusercontent.com/2098408/65333320-91eddf00-dbc0-11e9-8bfb-3c9774b62af2.png)](https://github.com/neicnordic)
+
+
+[![Scaleout](https://user-images.githubusercontent.com/2098408/65333699-42f47980-dbc1-11e9-9db3-f0e5dcdadc8b.png)](www.scaleoutsystems.com)
+
+
+
 # Setup
 ## 1. Install cluster
 Follow the guide to setup the reference cluster infrastructure.
@@ -23,6 +31,8 @@ Follow the guide to setup the reference cluster infrastructure.
 
 ### 2.1 Generate a wildcard domain certificate.
 Follow along in the readme in [Cert](extra/cert)
+
+
 
 ## 3. Install charts
 
