@@ -1,0 +1,8 @@
+clouds:
+  <cloud_name>:
+    type: openstack
+    auth-types: [userpass]
+    endpoint: https://<KEYSTONE_API_URL>/v3
+    regions:
+      <region_name>:
+        endpoint: https://<KEYSTONE_API_URL>/v3
