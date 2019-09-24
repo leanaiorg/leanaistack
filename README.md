@@ -20,6 +20,10 @@ Read more on how to contribute [here](CONTRIBUTING.md)
 
 [![Scaleout](https://user-images.githubusercontent.com/2098408/65333699-42f47980-dbc1-11e9-9db3-f0e5dcdadc8b.png)](www.scaleoutsystems.com)
 
+[![uu_logo](https://user-images.githubusercontent.com/46811/65514759-439d5080-dede-11e9-8389-b22cffffd892.png)](http://www.farmbio.uu.se)
+
+[![pharmbio-logo](https://user-images.githubusercontent.com/46811/65514764-46984100-dede-11e9-9c1d-834d11b82816.png)](https://pharmb.io)
+
 
 
 # Setup
