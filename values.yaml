@@ -8,6 +8,7 @@ global:
       paths: []
 
 minio:
+    enabled: true
     ingress:
         enabled: true
         annotations:
@@ -27,6 +28,7 @@ minio:
       size: 10Gi
 
 registry:
+    enabled: true
     ingress:
         enabled: true
         annotations:
@@ -43,6 +45,7 @@ registry:
       accessMode: ReadWriteOnce
       size: 10Gi
 argo:
+  enabled: true
   ui:
     ingress:
         enabled: true
@@ -56,10 +59,12 @@ argo:
                   - workflow.example.cluster.url
 
 argo-events:
+  enabled: true
   namespace: argo-events
   singleNamespace: false
 
 rabbitmq:
+  enabled: true
   rabbitmq:
     username: yourusername
     password: yourpassword
@@ -73,6 +78,7 @@ rabbitmq:
       nginx.ingress.kubernetes.io/proxy-body-size: 1000m
 
 jupyterhub:
+    enabled: true
     proxy:
       # Generate a unique token!
       secretToken: "956403d9cb95e6243d99d9026304dce0d7db0b7531aa732194bf8cffec94a43b"
