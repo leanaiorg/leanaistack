@@ -1,6 +1,7 @@
 # Default values for leanaistack.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+# Each component supports a field "enabled: true/false"; disabled components are not installed
 
 global:
   hosts:
