@@ -1,3 +1,4 @@
+# version x.x.x corresponds to "latest"
 dependencies:
   - name: jupyterhub
     version: 0.8.2
@@ -19,14 +20,12 @@ dependencies:
     repository: "https://openfaas.github.io/faas-netes/"
     condition: openfaas.enabled
 
-  # version x.x.x corresponds to "latest"
   - name: argo-events
-    version: x.x.x
+    version: 0.5.0
     repository: "https://argoproj.github.io/argo-helm"
     condition: argo-events.enabled
 
-  # version x.x.x corresponds to "latest"
   - name: argo
-    version: x.x.x
+    version: 0.6.1
     repository: "https://argoproj.github.io/argo-helm"
     condition: argo.enabled
