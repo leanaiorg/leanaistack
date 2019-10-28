@@ -19,8 +19,8 @@ modules/PythonScaler/configs/*
 !modules/PythonScaler/configs/README.md
 modules/PythonScaler/cookies/
 
-charts/*.tgz
-requirements.lock
+helm-charts/*/charts/*.tgz
+*requirements.lock
 
 
 extra/cert/*

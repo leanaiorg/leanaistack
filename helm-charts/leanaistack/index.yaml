@@ -1,0 +1,134 @@
+apiVersion: v1
+entries:
+  argo:
+  - apiVersion: v1
+    appVersion: v2.4.2
+    created: 2019-10-28T16:53:17.141426239+01:00
+    description: A Helm chart for Argo Workflows
+    digest: 57823e220136f35ac4ad52e0478a4f292a33f3aae187b4e2d38bafdbf890446a
+    icon: https://raw.githubusercontent.com/argoproj/argo/master/argo.png
+    name: argo
+    urls:
+    - charts/argo-0.6.1.tgz
+    version: 0.6.1
+  argo-events:
+  - apiVersion: v1
+    appVersion: "0.1"
+    created: 2019-10-28T16:53:17.141833457+01:00
+    description: A Helm chart to install Argo-Events in k8s Cluster
+    digest: e96466acf9ac5d17278a9c5b5376fdd1f9bab6c9daefae352b7674b22ce0901a
+    icon: https://raw.githubusercontent.com/argoproj/argo/master/argo.png
+    keywords:
+    - argo-events
+    - sensor-controller
+    - gateway-controller
+    maintainers:
+    - name: Vaibhav Page
+    - name: Matt Magaldi
+    name: argo-events
+    sources:
+    - https://github.com/argoproj/argo-events
+    urls:
+    - charts/argo-events-0.5.0.tgz
+    version: 0.5.0
+  jupyterhub:
+  - appVersion: 0.9.6
+    created: 2019-10-28T16:53:17.143609685+01:00
+    description: Multi-user Jupyter installation
+    digest: 32793390af1f32fbe8ea95e52d2cf7270c3eab9ea014b6c880722d8e67850780
+    home: https://z2jh.jupyter.org
+    icon: https://jupyter.org/assets/hublogo.svg
+    kubeVersion: '>=1.11.0-0'
+    name: jupyterhub
+    sources:
+    - https://github.com/jupyterhub/zero-to-jupyterhub-k8s
+    tillerVersion: '>=2.11.0-0'
+    urls:
+    - charts/jupyterhub-0.8.2.tgz
+    version: 0.8.2
+  leanaistack:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2019-10-28T16:53:17.140054687+01:00
+    description: A Helm chart for Lean AI Stack
+    digest: 9d77fa754976791defe01a35c2e5c391ccd9c3f9597e1719b5ea27b8094a0c1e
+    name: leanaistack
+    urls:
+    - leanaistack-0.1.0.tgz
+    version: 0.1.0
+  minio:
+  - apiVersion: v1
+    appVersion: RELEASE.2019-08-07T01-59-21Z
+    created: 2019-10-28T16:53:17.14465977+01:00
+    description: MinIO is a high performance distributed object storage server, designed
+      for large-scale private cloud infrastructure.
+    digest: 9d16813d9408eca70f5b0b00da6073153810de1410cd0bea10fea4b7db75f0ad
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - storage
+    - object-storage
+    - S3
+    maintainers:
+    - email: hello@acale.ph
+      name: Acaleph
+    - email: dev@minio.io
+      name: Minio
+    name: minio
+    sources:
+    - https://github.com/minio/minio
+    urls:
+    - charts/minio-2.5.13.tgz
+    version: 2.5.13
+  openfaas:
+  - apiVersion: v1
+    created: 2019-10-28T16:53:17.145735005+01:00
+    description: Enable Kubernetes as a backend for OpenFaaS (Functions as a Service)
+    digest: fc1fcfac0669f4922458d25fea8a57d416615d001f5d31f481d71d94ad3c1ac9
+    home: https://www.openfaas.com
+    icon: https://raw.githubusercontent.com/openfaas/media/master/OpenFaaS_logo_stacked_opaque.png
+    keywords:
+    - functions
+    - service
+    maintainers:
+    - email: alex@openfaas.com
+      name: alexellis
+    - email: roesler.lucas@gmail.com
+      name: lucasroesler
+    - email: stefan.prodan@gmail.com
+      name: stefanprodan
+    - email: rmocius@gmail.com
+      name: rimusz
+    name: openfaas
+    sources:
+    - https://github.com/openfaas/faas
+    - https://github.com/openfaas/faas-netes
+    urls:
+    - charts/openfaas-4.6.3.tgz
+    version: 4.6.3
+  rabbitmq:
+  - apiVersion: v1
+    appVersion: 3.7.17
+    created: 2019-10-28T16:53:17.147029994+01:00
+    description: Open source message broker software that implements the Advanced
+      Message Queuing Protocol (AMQP)
+    digest: eb7c4bfcdaf3ddfb0576d8f94a0c83b04afb28c09d72e5270f9577bd231ad14b
+    engine: gotpl
+    home: https://www.rabbitmq.com
+    icon: https://bitnami.com/assets/stacks/rabbitmq/img/rabbitmq-stack-220x234.png
+    keywords:
+    - rabbitmq
+    - message queue
+    - AMQP
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    name: rabbitmq
+    sources:
+    - https://github.com/bitnami/bitnami-docker-rabbitmq
+    urls:
+    - charts/rabbitmq-6.4.4.tgz
+    version: 6.4.4
+generated: 2019-10-28T16:53:17.131278379+01:00
