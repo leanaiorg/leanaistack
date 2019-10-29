@@ -67,7 +67,7 @@ spec:
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           env:
-{{- if .Values.secrets.htpasswd }}
+{{- if (or .Values.secrets.htpasswd .Values.secrets.existingSecret) }}
             - name: REGISTRY_AUTH
               value: "htpasswd"
             - name: REGISTRY_AUTH_HTPASSWD_REALM
@@ -78,7 +78,11 @@ spec:
             - name: REGISTRY_HTTP_SECRET
               valueFrom:
                 secretKeyRef:
+                  {{- if not .Values.secrets.existingSecret }}
                   name: {{ template "docker-registry.fullname" . }}-secret
+                  {{- else }}
+                  name: {{ .Values.secrets.existingSecret }}
+                  {{- end }}
                   key: haSharedSecret
 {{- if .Values.tlsSecretName }}
             - name: REGISTRY_HTTP_TLS_CERTIFICATE
@@ -155,7 +159,7 @@ spec:
               value: "true"
 {{- end }}
           volumeMounts:
-{{- if .Values.secrets.htpasswd }}
+{{- if (or .Values.secrets.htpasswd .Values.secrets.existingSecret) }}
             - name: auth
               mountPath: /auth
               readOnly: true
@@ -184,6 +188,14 @@ spec:
         - name: auth
           secret:
             secretName: {{ template "docker-registry.fullname" . }}-secret
+            items:
+            - key: htpasswd
+              path: htpasswd
+{{- end }}
+{{- if .Values.secrets.existingSecret }}
+        - name: auth
+          secret:
+            secretName: {{ .Values.secrets.existingSecret }}
             items:
             - key: htpasswd
               path: htpasswd

@@ -67,6 +67,10 @@ storage: filesystem
 secrets:
   haSharedSecret: ""
   htpasswd: ""
+
+  # Use an existing secret for htpasswd and haSharedSecret
+  existingSecret: ""
+
 # Secrets for Azure
 #   azure:
 #     accountName: ""
