@@ -44,28 +44,32 @@ Follow along in the readme in [Cert](extra/cert)
 1. Ensure you have a cluster ready. From instructions above or other.
 2. Ensure you have a loaded `$KUBECONFIG` from env or other place.
 1. Ensure you have installed and configured **helm**, check that `helm version` shows also the server version and you are ready to go!
-
-### 3.2 Refresh dependencies
+### 3.2 Add helm repository access to published charts
+```bash
+helm repo add leanai https://leanaiorg.github.io/leanaistack/helm-charts/leanaistack/
+helm repo update
+```
+### 3.3 Refresh dependencies
 To refresh dependencies before installing run the following command from this ``"root"`` directory
 ```bash
 helm dep up
 ```
 
-### 3.3 Copy example values to your local.
+### 3.4 Copy example values to your local.
 ```bash
 cp values.yaml values-local.yaml
 ```
 Edit as appropriate.
 
-### 3.4 Install charts
+### 3.5 Install charts
 from `"root"` directory and override values with your values file.
 ```bash
-helm install -n leanai . --values=values-local.yaml
+helm install leanai/leanaistack -n leanai  --values=values-local.yaml
 ```
 
 ### Upgrade only values that changed.
 ```bash
-helm install --upgrade . -n leanai --values=values-local.yaml
+helm install --upgrade leanai/leanaistack -n leanai --values=values-local.yaml
 ```
 
 ### Uninstall charts
