@@ -1,4 +1,5 @@
 # Lean AI Stack
+Please visit [github.com/scaleoutsystems/stackn](github.com/scaleoutsystems/stackn) for a maintained fork of the LEAN AI STACK.
 
 ## Introduction
 The Lean AI Stack is a open source project aiming to be a complete solution for working on End to End machine learning. From experiments and exploring datasets to large-scale training to end user serving and monitoring of models and their performance in production. In addition to supporting the basic workflow of finding good models it also support extensive customization and adding value through setting up automated machine learning pipelines. This solution builds on best of breed open source software to provide a complete but totally configurable solution for organizational, institutional or individual needs. We are happy to have your support on this project. See Contributing.
